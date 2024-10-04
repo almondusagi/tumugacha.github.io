@@ -214,10 +214,10 @@
                     <input type="checkbox" id="toggleDraws" checked>
                     <span class="slider"></span>
                 </label>
-                <span class="toggle-label">引いた回数</span>
+                <span class="toggle-label">引いた数</span>
                 <span class="tooltip">
                     <span class="help-icon">?</span>
-                    <span class="tooltiptext">あなたの汗水垂らして稼いだコインが、秒速3万という速度で何回分無駄に散ったかを示してくれます。</span>
+                    <span class="tooltiptext">試行回数を表示します。</span>
                 </span>
             </div>
             <div class="toggle">
@@ -225,10 +225,10 @@
                     <input type="checkbox" id="toggleProbability" checked>
                     <span class="slider"></span>
                 </label>
-                <span class="toggle-label">当たる確率</span>
+                <span class="toggle-label">出る確率</span>
                 <span class="tooltip">
                     <span class="help-icon">?</span>
-                    <span class="tooltiptext">この確率が高いほど、期待値が高いことを意味します。100%からこの確率を引くことで、当たらない確率が分かります。未だに当たらない貴方がどれほど惨めで恵まれない、神にも見捨てられた稀有な存在かを示してくれます。</span>
+                    <span class="tooltiptext">当たる確率と試行回数をもとに、実際に出る期待値を算出します。</span>
                 </span>
             </div>
             <div class="toggle">
@@ -239,7 +239,7 @@
                 <span class="toggle-label">期待値</span>
                 <span class="tooltip">
                     <span class="help-icon">?</span>
-                    <span class="tooltiptext">当たりの確率に対して、妥当な試行回数(引く回数)を示しています。この数より多ければ運のない残念な人。少なければ運に頼った怠惰な人。同じくらいならただ面白みのない人です。</span>
+                    <span class="tooltiptext">当たりの確率をもとに、一体当たる平均的な試行回数(引く回数)を示しています。</span>
                 </span>
             </div>
             <div class="toggle">
@@ -250,7 +250,7 @@
                 <span class="toggle-label">コイン情報</span>
                 <span class="tooltip">
                     <span class="help-icon">?</span>
-                    <span class="tooltiptext">コインの情報。</span>
+                    <span class="tooltiptext">１体３万コインとして、必要なコイン枚数を示しています。</span>
                 </span>
             </div>
         </div>
@@ -287,10 +287,10 @@
         function updateResult(attempts, successProbability, probability, expectedAttempts, spentCoins, requiredCoins) {
             let result = '';
             if (toggleDraws.checked) {
-                result += `引いた回数: <span class="highlight-red">${attempts}回</span><br>`;
+                result += `引いた数: <span class="highlight-red">${attempts}体</span><br>`;
             }
             if (toggleProbability.checked) {
-                result += `${attempts}回引いた時、1回は当たる確率: <span class="highlight-red">${(successProbability * 100).toFixed(2)}%</span><br>`;
+                result += `${attempts}回引いた時、1体は当たる確率: <span class="highlight-red">${(successProbability * 100).toFixed(2)}%</span><br>`;
             }
             if (toggleExpectedValue.checked) {
                 result += `${probability}%の当たりが出る期待値: <span class="highlight-red">${expectedAttempts}回</span><br>`;
