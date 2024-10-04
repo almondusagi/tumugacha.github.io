@@ -263,7 +263,7 @@
                 <span class="toggle-label">平均値</span>
                 <span class="tooltip">
                     <span class="help-icon">?</span>
-                    <span class="tooltiptext">排出率をもとに、２人に１人は当たるという平均値を示しています。</span>
+                    <span class="tooltiptext">排出率をもとに、期待値≧50%となる点を示しています。２人に１人は当たるといった感覚です。</span>
                 </span>
             </div>
             <div class="toggle">
@@ -292,41 +292,44 @@
         const toggleCoins = document.getElementById('toggleCoins');
 
         function calculateProbability() {
-            const probabilityValue = probabilityInput.value.replace(/[^0-9.]/g, '');
-            const probability = parseFloat(probabilityValue);
-            const attempts = parseInt(attemptsInput.value);
+    const probabilityValue = probabilityInput.value.replace(/[^0-9.]/g, '');
+    const probability = parseFloat(probabilityValue);
+    const attempts = parseInt(attemptsInput.value);
 
-            if (isNaN(probability) || probability <= 0 || probability > 100 || isNaN(attempts) || attempts < 1) {
-                resetInputs();
-                return;
-            }
+    if (isNaN(probability) || probability <= 0 || probability > 100 || isNaN(attempts) || attempts < 1) {
+        resetInputs();
+        return;
+    }
 
-            const successProbability = 1 - Math.pow(1 - probability / 100, attempts);
-            const expectedAttempts = Math.ceil(100 / probability);
-            const requiredCoins = expectedAttempts * 3;
-            const spentCoins = attempts * 3;
+    const successProbability = 1 - Math.pow(1 - probability / 100, attempts);
+    
+    // 期待値の計算を変更
+    const expectedAttempts = Math.ceil(Math.log(0.5) / Math.log(1 - probability / 100));
+    
+    const requiredCoins = expectedAttempts * 3;
+    const spentCoins = attempts * 3;
 
-            updateResult(attempts, successProbability, probability, expectedAttempts, spentCoins, requiredCoins);
-        }
+    updateResult(attempts, successProbability, probability, expectedAttempts, spentCoins, requiredCoins);
+}
 
-        function updateResult(attempts, successProbability, probability, expectedAttempts, spentCoins, requiredCoins) {
-            let result = '';
-            if (toggleDraws.checked) {
-                result += `引いた数: <span class="highlight-red">${attempts}体</span><br>`;
-            }
-            if (toggleProbability.checked) {
-                result += `${attempts}回引いた時、1体は当たる確率: <span class="highlight-red">${(successProbability * 100).toFixed(2)}%</span><br>`;
-            }
-            if (toggleExpectedValue.checked) {
-                result += `${probability}%を引く平均回数: <span class="highlight-red">${expectedAttempts}回</span><br>`;
-            }
-            if (toggleCoins.checked) {
-                result += `消費したコイン枚数: <span class="highlight-red">${spentCoins}万枚</span><br>`;
-                result += `平均的な必要コイン枚数: <span class="highlight-red">${requiredCoins}万枚</span>`;
-            }
+	function updateResult(attempts, successProbability, probability, expectedAttempts, spentCoins, requiredCoins) {
+	    let result = '';
+	    if (toggleDraws.checked) {
+	        result += `引いた数: <span class="highlight-red">${attempts}体</span><br>`;
+	    }
+	    if (toggleProbability.checked) {
+	        result += `${attempts}回引いた時、1体は当たる確率: <span class="highlight-red">${(successProbability * 100).toFixed(2)}%</span><br>`;
+	    }
+	    if (toggleExpectedValue.checked) {
+	        result += `${probability}%を引く平均回数: <span class="highlight-red">${expectedAttempts}回</span><br>`;
+	    }
+	    if (toggleCoins.checked) {
+	        result += `消費したコイン枚数: <span class="highlight-red">${spentCoins}万枚</span><br>`;
+	        result += `平均的な必要コイン枚数: <span class="highlight-red">${requiredCoins}万枚</span>`;
+	    }
 
-            resultDiv.innerHTML = result || '表示する項目を選択してください';
-        }
+	    resultDiv.innerHTML = result || '表示する項目を選択してください';
+	}
 
         function resetInputs() {
             probabilityInput.value = '';
