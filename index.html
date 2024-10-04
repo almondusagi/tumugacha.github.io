@@ -213,7 +213,7 @@
         <div class="calculator-container">
             <h1>ガチャ確率計算ツール</h1>
             <div class="input-group">
-                <input type="text" id="probability" placeholder="当たりの確率（%）" onfocus="this.placeholder = ''" onblur="this.placeholder = '当たりの確率（%）'">
+                <input type="text" id="probability" placeholder="排出率（%）" onfocus="this.placeholder = ''" onblur="this.placeholder = '当たりの確率（%）'">
                 <input type="number" inputmode="numeric" id="attempts" placeholder="試行回数" min="1" onfocus="this.placeholder = ''" onblur="this.placeholder = '試行回数'">
             </div>
             
@@ -252,7 +252,7 @@
                 <span class="toggle-label">確率</span>
                 <span class="tooltip">
                     <span class="help-icon">?</span>
-                    <span class="tooltiptext">当たる確率と試行回数をもとに、実際に出る期待値を算出します。</span>
+                    <span class="tooltiptext">排出率と試行回数をもとに、実際に出る期待値を算出します。</span>
                 </span>
             </div>
             <div class="toggle">
@@ -260,10 +260,10 @@
                     <input type="checkbox" id="toggleExpectedValue" checked>
                     <span class="slider"></span>
                 </label>
-                <span class="toggle-label">期待値</span>
+                <span class="toggle-label">平均値</span>
                 <span class="tooltip">
                     <span class="help-icon">?</span>
-                    <span class="tooltiptext">当たりの確率をもとに、一体当たる平均的な試行回数(引く回数)を示しています。</span>
+                    <span class="tooltiptext">排出率をもとに、２人に１人は当たるという平均値を示しています。</span>
                 </span>
             </div>
             <div class="toggle">
@@ -318,11 +318,11 @@
                 result += `${attempts}回引いた時、1体は当たる確率: <span class="highlight-red">${(successProbability * 100).toFixed(2)}%</span><br>`;
             }
             if (toggleExpectedValue.checked) {
-                result += `${probability}%の当たりが出る期待値: <span class="highlight-red">${expectedAttempts}回</span><br>`;
+                result += `${probability}%を引く平均回数: <span class="highlight-red">${expectedAttempts}回</span><br>`;
             }
             if (toggleCoins.checked) {
-                result += `消費したコイン: <span class="highlight-red">${spentCoins}万枚</span><br>`;
-                result += `期待値に必要なコイン: <span class="highlight-red">${requiredCoins}万枚</span>`;
+                result += `消費したコイン枚数: <span class="highlight-red">${spentCoins}万枚</span><br>`;
+                result += `平均的な必要コイン枚数: <span class="highlight-red">${requiredCoins}万枚</span>`;
             }
 
             resultDiv.innerHTML = result || '表示する項目を選択してください';
