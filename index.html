@@ -41,17 +41,20 @@
         }
         .input-group {
             display: flex;
-            flex-direction: column;
+            flex-direction: column; /* 縦に並べる */
+            align-items: center; /* 中央揃え */
             margin-bottom: 15px;
         }
         input {
-            width: 100%;
+            width: 100%; /* 幅を100%に */
+            max-width: 300px; /* 最大幅を設定 */
             padding: 10px;
-            margin: 5px 0;
+            margin: 5px 0; /* 上下にマージン */
             border: 1px solid #ccc;
             border-radius: 5px;
             box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
             font-size: 16px;
+            text-align: center; /* テキストを中央揃え */
         }
         .button-group {
             display: flex;
@@ -99,289 +102,313 @@
             margin-bottom: 20px;
         }
         .toggle input {
-            opacity: 0;
-            width: 0;
-            height: 0;
+            opacity: 0; /* 非表示 */
+            width: 0; 
+            height: 0; 
         }
         .slider {
-            position: relative;
-            display: inline-block;
-            width: 50px;
-            height: 24px;
-            background-color: #ccc;
-            border-radius: 24px;
-            transition: .4s;
-            cursor: pointer;
-        }
-        .slider:before {
-            position: absolute;
-            content: "";
-            height: 18px;
-            width: 18px;
-            left: 3px;
-            bottom: 3px;
-            background-color: white;
-            transition: .4s;
-            border-radius: 50%;
-        }
-        input:checked + .slider {
-            background-color: #2196F3;
-        }
-        input:checked + .slider:before {
-            transform: translateX(26px);
-        }
-        .toggle-label {
-            font-size: 0.9em;
-            margin-left: 10px;
-        }
-        .help-icon {
-            display: inline-block;
-            width: 18px;
-            height: 18px;
-            background-color: #888888;
-            color: white;
-            border-radius: 50%;
-            text-align: center;
-            line-height: 18px;
-            font-size: 12px;
-            cursor: pointer;
-            margin-left: 5px;
-        }
-        .tooltip {
-            position: relative;
-            display: inline-block;
-        }
-        .tooltip .tooltiptext {
-            visibility: hidden;
-            width: 200px;
-            background-color: rgba(85,85,85,0.75);
-            color: #fff;
-            text-align: center;
-            border-radius: 6px;
-            padding: 5px;
-            position: absolute;
-            z-index: 1;
-            bottom: 125%;
-            left: 50%;
-            margin-left: -100px;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-        .tooltip:hover .tooltiptext {
-            visibility: visible;
-            opacity: 1;
-        }
-        .highlight-red {
-            color: red;
-        }
-        #floating-image {
-            position: fixed;
-            width: 80px;
-            height: auto;
-            z-index: 0;
-        }
-        @media only screen and (min-width: 768px) {
-            .main-container {
-                flex-direction: row;
-            }
-            .calculator-container {
-                flex: 2;
-                margin-right: 20px;
-            }
-            .toggle-container {
-                flex: 1;
-            }
-            .input-group {
-                flex-direction: row;
-            }
-            input {
-                width: 45%;
-                margin: 0 5px;
-            }
-            #floating-image {
-                width: 100px;
-            }
-        }
-    </style>
+             position: relative; 
+             display:inline-block; 
+             width :50 px; 
+             height :24 px; 
+             background-color :#ccc; 
+             border-radius :24 px; 
+             transition : .4 s; 
+             cursor:pointer; 
+         }
+
+         .slider :before { 
+             position:absolute; 
+             content:""; 
+             height :18 px; 
+             width :18 px; 
+             left :3 px; 
+             bottom :3 px; 
+             background-color:white; 
+             transition:.4 s; 
+             border-radius :50 %; 
+         }
+
+         input :checked + .slider { 
+             background-color:#2196F3; 
+         }
+
+         input :checked + .slider :before { 
+             transform :translateX(26 px); 
+         }
+
+         .toggle-label { 
+             font-size:.9 em; 
+             margin-left :10 px; 
+         }
+
+         .help-icon { 
+             display:inline-block; 
+             width :18 px; 
+             height :18 px; 
+             background-color:#888888; 
+             color:white; 
+             border-radius :50 %; 
+             text-align:center; 
+             line-height :18 px; 
+             font-size :12 px; 
+             cursor:pointer; 
+             margin-left :5 px; 
+         }
+
+         .tooltip { position :relative ; display:inline-block ; }
+
+         .tooltip .tooltiptext { visibility:hidden ; width :200 px ; background-color :rgba(85 ,85 ,85 ,0.75) ; color:#fff ; text-align:center ; border-radius :6 px ; padding :5 px ; position:absolute ; z-index :1 ; bottom :125 % ; left :50 % ; margin-left :-100 px ; opacity :0 ; transition :opacity .3 s ; }
+
+         .tooltip:hover .tooltiptext { visibility :visible ; opacity :1 ; }
+
+         .highlight-red { color:red ; }
+
+         #floating-image { position:absolute ; width :80 px ; height:auto ; z-index :0 ; }
+
+         @media only screen and (min-width :768 px) { 
+
+           .main-container { flex-direction :row ; } 
+
+           .calculator-container { flex :2 ; margin-right :20 px ; } 
+
+           .toggle-container { flex :1 ; } 
+
+           .input-group { flex-direction :row ; } 
+
+           input { width :45 %; margin :0 5 px ; } 
+
+           #floating-image { width :100 px ; } 
+
+       } 
+
+   </style> 
+
 </head>
-<body>
-    <img id="floating-image" src="https://livedoor.blogimg.jp/linegame_pr/imgs/4/5/45198611.png" alt="シンデレラ">
-    <div class="main-container">
-        <div class="calculator-container">
-            <h1>ツムガチャ計算機</h1>
-            <div class="input-group">
-                <input type="text" id="probability" placeholder="当たりの確率（%）" onfocus="this.placeholder = ''" onblur="this.placeholder = '当たりの確率（%）'">
-                <input type="number" inputmode="numeric" id="attempts" placeholder="試行回数" min="1" onfocus="this.placeholder = ''" onblur="this.placeholder = '試行回数'">
-            </div>
-            
-            <div class="button-group">
-              <button id="calculateButton">計算する</button>
-              <button id="resetButton">リセット</button>
-            </div>
 
-            <div id="result">
-                結果がここに表示されます
-            </div>
+<body> 
 
-            <p class="note">
-                注意：このツールは確率の計算のみを目的としています。実際のガチャや抽選を行うものではありません。
-            </p>
-        </div>
+   <img id="floating-image" src="https://livedoor.blogimg.jp/linegame_pr/imgs/4/5/45198611.png" alt="シンデレラ"> 
 
-        <div class="toggle-container">
-            <h2>表示/非表示</h2>
-            <div class="toggle">
-                <label>
-                    <input type="checkbox" id="toggleDraws" checked>
-                    <span class="slider"></span>
-                </label>
-                <span class="toggle-label">引いた数</span>
-                <span class="tooltip">
-                    <span class="help-icon">?</span>
-                    <span class="tooltiptext">試行回数を表示します。</span>
-                </span>
-            </div>
-            <div class="toggle">
-                <label>
-                    <input type="checkbox" id="toggleProbability" checked>
-                    <span class="slider"></span>
-                </label>
-                <span class="toggle-label">確率</span>
-                <span class="tooltip">
-                    <span class="help-icon">?</span>
-                    <span class="tooltiptext">当たる確率と試行回数をもとに、実際に出る期待値を算出します。</span>
-                </span>
-            </div>
-            <div class="toggle">
-                <label>
-                    <input type="checkbox" id="toggleExpectedValue" checked>
-                    <span class="slider"></span>
-                </label>
-                <span class="toggle-label">期待値</span>
-                <span class="tooltip">
-                    <span class="help-icon">?</span>
-                    <span class="tooltiptext">当たりの確率をもとに、一体当たる平均的な試行回数(引く回数)を示しています。</span>
-                </span>
-            </div>
-            <div class="toggle">
-                <label>
-                    <input type="checkbox" id="toggleCoins" checked>
-                    <span class="slider"></span>
-                </label>
-                <span class="toggle-label">コイン情報</span>
-                <span class="tooltip">
-                    <span class="help-icon">?</span>
-                    <span class="tooltiptext">１体３万コインとして、必要なコイン枚数を示しています。</span>
-                </span>
-            </div>
-        </div>
-    </div>
+   <div class="main-container"> 
 
-    <script>
-        const calculateButton = document.getElementById('calculateButton');
-        const resetButton = document.getElementById('resetButton');
-        const probabilityInput = document.getElementById('probability');
-        const attemptsInput = document.getElementById('attempts');
-        const resultDiv = document.getElementById('result');
-        const toggleDraws = document.getElementById('toggleDraws');
-        const toggleProbability = document.getElementById('toggleProbability');
-        const toggleExpectedValue = document.getElementById('toggleExpectedValue');
-        const toggleCoins = document.getElementById('toggleCoins');
+       <div class="calculator-container"> 
 
-        function calculateProbability() {
-            const probabilityValue = probabilityInput.value.replace(/[^0-9.]/g, '');
-            const probability = parseFloat(probabilityValue);
-            const attempts = parseInt(attemptsInput.value);
+           <h1>ツムガチャ計算機</h1> 
 
-            if (isNaN(probability) || probability <= 0 || probability > 100 || isNaN(attempts) || attempts < 1) {
-                resetInputs();
-                return;
-            }
+           <div class="input-group"> 
 
-            const successProbability = 1 - Math.pow(1 - probability / 100, attempts);
-            const expectedAttempts = Math.ceil(100 / probability);
-            const requiredCoins = expectedAttempts * 3;
-            const spentCoins = attempts * 3;
+               <input type="text" id="probability" placeholder="当たりの確率（%）" onfocus="this.placeholder = ''" onblur="this.placeholder = '当たりの確率（%）'"> 
 
-            updateResult(attempts, successProbability, probability, expectedAttempts, spentCoins, requiredCoins);
-        }
+               <input type="number" inputmode="numeric" id="attempts" placeholder="試行回数" min="1" onfocus="this.placeholder = ''" onblur="this.placeholder = '試行回数'"> 
 
-        function updateResult(attempts, successProbability, probability, expectedAttempts, spentCoins, requiredCoins) {
-            let result = '';
-            if (toggleDraws.checked) {
-                result += `引いた数: <span class="highlight-red">${attempts}体</span><br>`;
-            }
-            if (toggleProbability.checked) {
-                result += `${attempts}回引いた時、1体は当たる確率: <span class="highlight-red">${(successProbability * 100).toFixed(2)}%</span><br>`;
-            }
-            if (toggleExpectedValue.checked) {
-                result += `${probability}%の当たりが出る期待値: <span class="highlight-red">${expectedAttempts}回</span><br>`;
-            }
-            if (toggleCoins.checked) {
-                result += `消費したコイン: <span class="highlight-red">${spentCoins}万枚</span><br>`;
-                result += `期待値に必要なコイン: <span class="highlight-red">${requiredCoins}万枚</span>`;
-            }
+           </div>
 
-            resultDiv.innerHTML = result || '表示する項目を選択してください';
-        }
+           <div class="button-group"> 
 
-        function resetInputs() {
-            probabilityInput.value = '';
-            attemptsInput.value = '';
-            resultDiv.innerHTML = '結果がここに表示されます';
-        }
+               <button id="calculateButton">計算する</button> 
 
-        probabilityInput.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                e.preventDefault();
-                attemptsInput.focus();
-            }
-        });
+               <button id="resetButton">リセット</button> 
 
-        attemptsInput.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                e.preventDefault();
-                calculateProbability();
-            }
-        });
+           </div>
 
-        calculateButton.addEventListener('click', calculateProbability);
+           <div id="result"> 結果がここに表示されます </div>
 
-        resetButton.addEventListener('click', resetInputs);
+           <p class="note"> 注意：このツールは確率の計算のみを目的としています。実際のガチャや抽選を行うものではありません。 </p>
 
-        [toggleDraws, toggleProbability, toggleExpectedValue, toggleCoins].forEach(toggle => {
-            toggle.addEventListener('change', function() {
-                if (probabilityInput.value && attemptsInput.value) {
-                    calculateProbability();
-                }
-            });
-        });
+       </div>
 
-        // 画像のアニメーション
-        const floatingImage = document.getElementById('floating-image');
-        let x = Math.random() * (window.innerWidth - floatingImage.width);
-        let y = Math.random() * (window.innerHeight - floatingImage.height);
-        let dx = (Math.random() - 0.5) * 4;
-        let dy = (Math.random() - 0.5) * 4;
+       <div class="toggle-container"> 
 
-        function animate() {
-            x += dx;
-            y += dy;
+           <h2>表示/非表示</h2> 
 
-            if (x + floatingImage.width > window.innerWidth || x < 0) {
-                dx = -dx;
-            }
-            if (y + floatingImage.height > window.innerHeight || y < 0) {
-                dy = -dy;
-            }
+           <div class="toggle"> 
 
-            floatingImage.style.left = x + 'px';
-            floatingImage.style.top = y + 'px';
+               <label> 
 
-            requestAnimationFrame(animate);
-        }
+                   <input type="checkbox" id="toggleDraws" checked> 
 
-        animate();
-    </script>
+                   <span class="slider"></span> 
+
+               </label> 
+
+               <span class="toggle-label">引いた数</span> 
+
+               <span class="tooltip"> 
+
+                   <span class="help-icon">?</span> 
+
+                   <span class="tooltiptext">試行回数を表示します。</span> 
+
+               </span> 
+
+           </div> 
+
+           <div class="toggle"> 
+
+               <label> 
+
+                   <input type="checkbox" id="toggleProbability" checked> 
+
+                   <span class="slider"></span> 
+
+               </label> 
+
+               <span class="toggle-label">確率</span> 
+
+               <span class="tooltip"> 
+
+                   <span class="help-icon">?</span> 
+
+                   <span class="tooltiptext">当たる確率と試行回数をもとに、実際に出る期待値を算出します。</span> 
+
+               </span> 
+
+           </div> 
+
+           <div class="toggle"> 
+
+               <label> 
+
+                   <input type="checkbox" id="toggleExpectedValue" checked> 
+
+                   <span class="slider"></span> 
+
+               </label> 
+
+               <span class="toggle-label">期待値</span> 
+
+               <span class="tooltip"> 
+
+                   <span class="help-icon">?</span> 
+
+                   <span class="tooltiptext">当たりの確率をもとに、一体当たる平均的な試行回数(引く回数)を示しています。</span> 
+
+               </span> 
+
+           </div>
+
+           <div class="toggle">
+
+               <label>
+
+                   <input type="checkbox" id="toggleCoins" checked>
+                   <span class="slider"></span>
+               </label>
+               <span class="toggle-label">コイン情報</span>
+               <span class="tooltip">
+                   <span class="help-icon">?</span>
+                   <span class="tooltiptext">１体３万コインとして、必要なコイン枚数を示しています。</span>
+               </span>
+           </div>
+       </div>
+   </div>
+
+   <script>
+       const calculateButton = document.getElementById('calculateButton');
+       const resetButton = document.getElementById('resetButton');
+       const probabilityInput = document.getElementById('probability');
+       const attemptsInput = document.getElementById('attempts');
+       const resultDiv = document.getElementById('result');
+       const toggleDraws = document.getElementById('toggleDraws');
+       const toggleProbability = document.getElementById('toggleProbability');
+       const toggleExpectedValue = document.getElementById('toggleExpectedValue');
+       const toggleCoins = document.getElementById('toggleCoins');
+
+       function calculateProbability() {
+           const probabilityValue = probabilityInput.value.replace(/[^0-9.]/g, '');
+           const probability = parseFloat(probabilityValue);
+           const attempts = parseInt(attemptsInput.value);
+
+           if (isNaN(probability) || probability <= 0 || probability > 100 || isNaN(attempts) || attempts < 1) {
+               resetInputs();
+               return;
+           }
+
+           const successProbability = 1 - Math.pow(1 - probability / 100, attempts);
+           const expectedAttempts = Math.ceil(100 / probability);
+           const requiredCoins = expectedAttempts * 3;
+           const spentCoins = attempts * 3;
+
+           updateResult(attempts, successProbability, probability, expectedAttempts, spentCoins, requiredCoins);
+       }
+
+       function updateResult(attempts, successProbability, probability, expectedAttempts, spentCoins, requiredCoins) {
+           let result = '';
+           if (toggleDraws.checked) {
+               result += `引いた数:<span class='highlight-red'>${attempts}体</span><br>`;
+           }
+           if (toggleProbability.checked) {
+               result += `${attempts}回引いた時、1体は当たる確率:<span class='highlight-red'>${(successProbability * 100).toFixed(2)}%</span><br>`;
+           }
+           if (toggleExpectedValue.checked) {
+               result += `${probability}%の当たりが出る期待値:<span class='highlight-red'>${expectedAttempts}回</span><br>`;
+           }
+           if (toggleCoins.checked) {
+               result += `消費したコイン:<span class='highlight-red'>${spentCoins}万枚</span><br>`;
+               result += `期待値に必要なコイン:<span class='highlight-red'>${requiredCoins}万枚</span>`;
+           }
+
+          resultDiv.innerHTML = result || '表示する項目を選択してください';
+      }
+
+      function resetInputs() {
+          probabilityInput.value = '';
+          attemptsInput.value = '';
+          resultDiv.innerHTML = '結果がここに表示されます';
+      }
+
+      probabilityInput.addEventListener('keypress', function(e) {
+          if (e.key === 'Enter') {
+              e.preventDefault();
+              attemptsInput.focus();
+          }
+      });
+
+      attemptsInput.addEventListener('keypress', function(e) {
+          if (e.key === 'Enter') {
+              e.preventDefault();
+              calculateProbability();
+          }
+      });
+
+      calculateButton.addEventListener('click', calculateProbability);
+
+      resetButton.addEventListener('click', resetInputs);
+
+      [toggleDraws, toggleProbability, toggleExpectedValue, toggleCoins].forEach(toggle => {
+          toggle.addEventListener('change', function() {
+              if (probabilityInput.value && attemptsInput.value) {
+                  calculateProbability();
+              }
+          });
+      });
+
+      // アニメーション
+      const floatingImage = document.getElementById('floating-image');
+      let x = Math.random() * (window.innerWidth - floatingImage.width);
+      let y = Math.random() * (window.innerHeight - floatingImage.height);
+      let dx = (Math.random() - 0.5) * 4;
+      let dy = (Math.random() - 0.5) * 4;
+
+      function animate() {
+          x += dx;
+          y += dy;
+
+          if (x + floatingImage.width > window.innerWidth || x < 0) {
+              dx = -dx;
+          }
+          if (y + floatingImage.height > window.innerHeight || y < 0) {
+              dy = -dy;
+          }
+
+          floatingImage.style.left = x + 'px';
+          floatingImage.style.top = y + 'px';
+
+          requestAnimationFrame(animate);
+      }
+
+      animate();
+   </script>
 </body>
 </html>
